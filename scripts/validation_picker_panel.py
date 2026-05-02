@@ -127,9 +127,14 @@ class EventData:
     wave_filtered: np.ndarray
 
 
-def load_event_data(idx: int) -> EventData:
-    """Load + compute spectrogram for event idx (1-based, 1..50)."""
-    events = pd.read_csv(FIG_DIR / "fp_validation_events.csv")
+def load_event_data(idx: int, csv_name: str = "fp_validation_events.csv") -> EventData:
+    """Load + compute spectrogram for event idx (1-based, 1..N).
+
+    `csv_name` selects which sample to draw from. Defaults to the original
+    Phase A pilot. Pass 'fp_validation_events_phase3.csv' for the Phase 3
+    catalogue-stratified sample (25 seismic + 25 cryogenic).
+    """
+    events = pd.read_csv(FIG_DIR / csv_name)
     events["onset_utc"] = pd.to_datetime(events["onset_utc"])
     events["onset_utc_refined"] = pd.to_datetime(events["onset_utc_refined"])
 

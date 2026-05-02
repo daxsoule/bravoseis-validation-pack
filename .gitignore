@@ -14,6 +14,9 @@ uv.lock
 outputs/figures/exploratory/validation/annotated_maleen/event_*.png
 outputs/figures/exploratory/validation/annotated_maleen/event_*.json
 outputs/figures/exploratory/validation/fp_validation_labels_maleen.csv
+outputs/figures/exploratory/validation/annotated_phase3_maleen/event_*.png
+outputs/figures/exploratory/validation/annotated_phase3_maleen/event_*.json
+outputs/figures/exploratory/validation/fp_validation_labels_phase3_maleen.csv
 
 # OS / editor cruft
 .DS_Store

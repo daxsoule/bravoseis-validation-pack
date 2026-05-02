@@ -2,9 +2,14 @@
 
 *AI-generated draft (Claude, Anthropic) — for review. All parameters and figures are derived from version-controlled scripts and data.*
 
-This pack is for the **independent (blind)** inter-rater pass of the BRAVOSEIS Phase A detection validation. You will label 50 stratified-sampled events from the BRAVOSEIS hydroacoustic catalogue. Your verdicts will be compared against a primary reviewer's verdicts via Cohen's κ to establish the schema's reliability before scaling up to a 600-event Phase B trial.
+This pack is for the **independent (blind)** inter-rater pass of the BRAVOSEIS detection validation. There are now **two notebooks**, each with 50 events under the same 4-class schema. Your verdicts on each will be compared against a primary reviewer's verdicts via Cohen's κ.
 
-You will not see the primary reviewer's labels. That blinding is the point.
+| notebook | what it samples | purpose |
+|---|---|---|
+| `validation_relabel_50_maleen.ipynb` | Phase A pilot — 50 events stratified by detection band (low / mid / high), drawn 2026-03-03 | Validates the **detection stage** end-to-end (includes the whale-band events that Phase 3 later discards) |
+| `validation_relabel_50_phase3_maleen.ipynb` | Phase 3 catalogue sample — 25 seismic + 25 cryogenic, drawn from `phase3_catalogue.parquet` with seed=42 | Validates the **published catalogue** directly (earthquakes / T-phases + icequakes only) |
+
+Run them in either order. They are independent labeling tasks; both produce a labels CSV and a folder of annotated PNGs. You will not see the primary reviewer's labels.
 
 ---
 
@@ -24,7 +29,7 @@ uv run python -m ipykernel install --user --name bravoseis-validation \
     --display-name "BRAVOSEIS Validation"
 ```
 
-Open `notebooks/validation_relabel_50_maleen.ipynb` in JupyterLab and select the `BRAVOSEIS Validation` kernel.
+Open either `notebooks/validation_relabel_50_maleen.ipynb` (Phase A) or `notebooks/validation_relabel_50_phase3_maleen.ipynb` (Phase 3 catalogue) in JupyterLab and select the `BRAVOSEIS Validation` kernel. The two notebooks share the helper module and write to separate output folders, so you can work on either without disturbing the other.
 
 ---
 
@@ -86,12 +91,17 @@ Five events (#29, 37, 39, 41, 42) use slightly extended panels (10–14 s) becau
 
 ## What to send back
 
-When you are done with all 50:
+When you finish the **Phase A** notebook:
 
-- `outputs/figures/exploratory/validation/fp_validation_labels_maleen.csv` (the CSV from the aggregator cell)
-- `outputs/figures/exploratory/validation/annotated_maleen/` (the 50 annotated PNGs and JSON sidecars)
+- `outputs/figures/exploratory/validation/fp_validation_labels_maleen.csv`
+- `outputs/figures/exploratory/validation/annotated_maleen/`
 
-Either commit them to your branch of this repo and we will pull, or zip the `annotated_maleen/` folder plus the CSV and email it back.
+When you finish the **Phase 3 catalogue** notebook:
+
+- `outputs/figures/exploratory/validation/fp_validation_labels_phase3_maleen.csv`
+- `outputs/figures/exploratory/validation/annotated_phase3_maleen/`
+
+Either commit each batch to your branch of this repo and we will pull, or zip the relevant folders plus CSVs and email them back.
 
 ---
 
