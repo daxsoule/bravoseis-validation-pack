@@ -1,0 +1,51 @@
+event_id,idx,label,visual_onset_s,notes,reviewer,pick_shift_s,aic_pick_s,sta_lta_pick_s,physical_id
+E015371,1,TP,1.706,Good Clean Arrival. ,user,-0.0834999999999999,1.7895,3.3755,m6_20190211T051550_845
+E016336,2,TP,,This one nails it. One thing to note is that the acutual energy arrives earlier in the spectrogram.,user,,1.917,3.338,m6_20190211T061851_995
+E023164,3,TP,2.925,"Is this an Earthquake? We pick this well, but it looks somewhat different to me. I would put my pick on that first sharp downard motion",user,-0.1115000000000003,3.0365,4.5985,m4_20190213T090629_014
+E024572,4,TP,2.322,This is emergent in a classical TPhase sort of way. Noisy environment,user,-0.5329999999999999,2.855,4.547,m3_20190215T072018_478
+E026779,5,TP-Peak,3.612,Here the AIC picker was late. ,user,-0.27,3.882,3.882,m1_20190215T094916_180
+E027656,6,TP,,Good Pick,user,,3.011,4.056,m5_20190215T104817_240
+E028795,7,TP,,Super High Frequency event. Perhaps we should set a cut that does not let this get through? Having said that.. I think we picked it correctly. ,user,,2.1475,4.1365,m2_20190217T165316_331
+E041796,8,TP,2.29,Good pick. ,user,-0.1164999999999998,2.4065,4.3175,m6_20190316T094151_141
+E042749,9,TP,,,user,,2.878,4.216,m5_20190316T112008_379
+E058069,10,TP,2.09,,user,-0.1990000000000003,2.289,3.911,m1_20190417T095248_930
+E059670,11,TP,2.544,,user,-0.1709999999999998,2.715,4.338,m3_20190417T120452_466
+E068455,12,TP,,,user,,1.513,3.96,m2_20190423T194634_753
+E069675,13,TP,3.125,,user,-0.076,3.201,4.032,m2_20190424T133636_867
+E075170,14,TP,,,user,,3.188,4.064,m4_20190429T061611_872
+E085902,15,TP,2.333,,user,-0.0849999999999999,2.418,4.03,m2_20190520T082025_935
+E095482,16,TP,,,user,,3.149,3.953,m5_20190530T003316_657
+E096684,17,TP-coda,1.0,This is a good one to flag for Bob. This one looks like two back to back events. One starts at ~1 second. Then next at 2.914. I will investigate if there is an ,user,-3.3495,4.3495,4.3495,m4_20190530T013115_791
+E105963,18,TP,2.816,,user,-0.3734999999999999,3.1895,4.0125,m1_20190601T122123_148
+E106047,19,TP,1.624,I am not confident on this one... is this an earthquake?,user,-0.1694999999999997,1.7935,3.1465,m4_20190601T122956_251
+E106904,20,TP,2.639,,user,-0.1320000000000001,2.771,3.748,m5_20190601T135821_771
+E106994,21,TP,,,user,,2.806,2.928,m5_20190601T140743_173
+E115215,22,TP,1.751,,user,-0.0450000000000001,1.796,3.519,m5_20190621T094447_259
+E126132,23,TP,2.322,,user,-0.0674999999999999,2.3895,3.9615,m1_20190627T162841_052
+E127756,24,TP,2.774,,user,-0.1009999999999999,2.875,4.085,m4_20190627T172705_458
+E129190,25,TP,,Bob Look,user,,2.3215,3.8105,m6_20190627T181813_955
+E144347,26,TP,,Bob Look. I am not sure about this... is the energy I am picking related to the more obvovious high amplitudes we see in the raw time series?,user,,1.0405,4.2405,m4_20190712T013243_586
+E159692,27,FP,,,user,,2.519,4.07,m6_20190807T174026_097
+E160722,28,TP,,,user,,2.323,3.51,m6_20190807T204348_360
+E174823,29,TP,1.892,The image is not ideally centered... but I think I see the onset. ,user,-0.1080000000000001,2.0,2.337,m6_20190821T034812_448
+E178481,30,,,,user,,2.7675,2.8785,m1_20190823T102532_521
+E196277,31,TP,2.407,,user,-0.4535,2.8605,3.6955,m4_20190924T122427_598
+E198510,32,TP,2.417,,user,-0.0830000000000001,2.5,4.069,m1_20190924T163724_668
+E199731,33,TP,3.305,,user,-0.1664999999999996,3.4715,3.9165,m5_20190925T111937_464
+E209370,34,TP,,,user,,1.1675,3.0735,m5_20191021T070449_752
+E224136,35,FP,,Bob look. In this case... the peak is at 35 hz and there does not appear to be anything impulsive. This might be whale noise of some sort. ,user,,1.8835,4.1165,m6_20191028T190346_692
+E228321,36,TP,1.978,,user,-0.3020000000000002,2.28,2.792,m1_20191121T220108_788
+E230313,37,TP,1.944,,user,-0.056,2.0,2.765,m6_20191124T010425_328
+E237513,38,TP,3.369,,user,-0.1674999999999999,3.5365,3.9845,m4_20191126T114834_706
+E240890,39,FP,,,user,,2.0,4.815,m3_20191213T045105_105
+E243442,40,TP,2.893,"Bob Look. This is a good example of an emergent signal at 2.893, but you also say that the true onset is around 1.5s... esentially we are dealing with some sort of multipath issue.  ",user,-0.9055,3.7985,3.9515,m2_20191213T150412_669
+E245827,41,TP,,Bob look. I marked this TP... but I think a good argument could be made for FP,user,,2.0,5.016,m4_20191213T182611_959
+E249158,42,TP,,,user,,2.0,3.756,m2_20191214T140004_936
+E251157,43,FP,,There is a whale call at around 200 Hz. Not what we are lookng for.,user,,2.188,4.236,m5_20191214T175556_800
+E253010,44,FP,,Perhaps this is some sort of frequecy wrapping? A whale? ,user,,3.925,3.925,m5_20191214T204718_148
+E253652,45,TP,1.403,,user,-1.0235,2.4265,3.9165,m3_20191219T034228_084
+E266054,46,TP,2.407,,user,-0.3514999999999997,2.7585,3.6915,m1_20200114T192713_508
+E266949,47,TP,3.309,,user,-0.1314999999999999,3.4405,3.5605,m4_20200114T203502_304
+E286233,48,TP,2.026,This is a hard one. ,user,-0.6280000000000001,2.654,4.148,m3_20200210T114442_509
+E289327,49,TP,,,user,,3.5825,4.1725,m2_20200212T091230_612
+E290091,50,TP,,,user,,3.3065,4.1535,m4_20200212T103503_020

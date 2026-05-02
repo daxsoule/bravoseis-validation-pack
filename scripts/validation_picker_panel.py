@@ -28,6 +28,7 @@ from scipy.signal import butter, sosfilt, spectrogram
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "scripts"))
 from read_dat import MOORINGS, SAMPLE_RATE, list_mooring_files, read_dat
+from catalogue_id import physical_id_for
 
 # Read DATA_ROOT from paths.yaml at the repo root. Falls back to the OOI
 # JupyterHub mount point if paths.yaml is missing or doesn't set data_root.
@@ -107,6 +108,7 @@ def _get_data(filepath):
 class EventData:
     idx: int                      # 1-based
     event_id: str
+    physical_id: str              # stable cross-catalogue id; see scripts/catalogue_id.py
     mooring: str
     band: str
     snr: float
@@ -200,6 +202,8 @@ def load_event_data(idx: int, csv_name: str = "fp_validation_events.csv") -> Eve
     return EventData(
         idx=idx,
         event_id=ev["event_id"],
+        physical_id=ev.get("physical_id") if pd.notna(ev.get("physical_id"))
+                    else physical_id_for(mooring, onset),
         mooring=mooring,
         band=band,
         snr=float(ev["snr"]),
