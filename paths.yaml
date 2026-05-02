@@ -1,0 +1,10 @@
+# Configure data location for the validation pack.
+#
+# This pack is designed for the OOI JupyterHub where the BRAVOSEIS DAT
+# archive is mounted at the path below. Override only if your environment
+# stores the DAT archive somewhere else.
+
+# Absolute path to the BRAVOSEIS DAT archive (the directory containing the
+# m1, m2, m3, m4, m5, m6 mooring subdirectories — see scripts/read_dat.py
+# MOORINGS dict for the expected layout).
+data_root: /home/jovyan/my_data/bravoseis/NOAA

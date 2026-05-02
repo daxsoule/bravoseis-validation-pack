@@ -1,0 +1,100 @@
+# BRAVOSEIS Detection Validation — Independent Reviewer Pack
+
+*AI-generated draft (Claude, Anthropic) — for review. All parameters and figures are derived from version-controlled scripts and data.*
+
+This pack is for the **independent (blind)** inter-rater pass of the BRAVOSEIS Phase A detection validation. You will label 50 stratified-sampled events from the BRAVOSEIS hydroacoustic catalogue. Your verdicts will be compared against a primary reviewer's verdicts via Cohen's κ to establish the schema's reliability before scaling up to a 600-event Phase B trial.
+
+You will not see the primary reviewer's labels. That blinding is the point.
+
+---
+
+## Setup (OOI JupyterHub)
+
+This pack assumes the BRAVOSEIS DAT archive is mounted at `/home/jovyan/my_data/bravoseis/NOAA`. If your environment differs, edit `paths.yaml` — only the `data_root` field needs to change.
+
+```bash
+# Clone into your home directory (path can be anywhere; the helper
+# auto-detects the repo root from its own file location).
+git clone <repo_url> ~/repos/bravoseis-validation-pack
+cd ~/repos/bravoseis-validation-pack
+
+# Create a local venv and install deps. This also registers a kernel.
+uv sync
+uv run python -m ipykernel install --user --name bravoseis-validation \
+    --display-name "BRAVOSEIS Validation"
+```
+
+Open `notebooks/validation_relabel_50_maleen.ipynb` in JupyterLab and select the `BRAVOSEIS Validation` kernel.
+
+---
+
+## Picking convention
+
+The visual reference for "true first arrival" is the **first detectable amplitude rise above background noise** in the time-domain (band-filtered or raw) waveform. This follows the PMEL convention (Fox et al. 2001; Dziak et al. 2010) and is the modality the time-domain pickers (STA/LTA, AIC, kurtosis) actually operate in. *Provisional pending B. Dziak's review.*
+
+Spectrogram-domain energy is sometimes visible earlier than the time-domain SNR onset — narrowband components can integrate above the noise floor before the broadband amplitude rise. **Record those in the `notes` field as scientific context, but do not enter them into `visual_onset_s`.** Mixing modalities biases the picker benchmark.
+
+---
+
+## 4-class schema
+
+| Label | Meaning |
+|---|---|
+| **TP** | Real event, AIC pick at the true first arrival (or within ~0.1 s of it) |
+| **TP-peak** | Real event, AIC pick lands on peak energy (late) |
+| **TP-coda** | Real event, AIC pick lands in the coda or on a multipath arrival (late) |
+| **FP** | Spurious trigger, no real signal |
+
+For FP events, set `visual_onset_s = None`.
+
+---
+
+## Per-event workflow
+
+Each event has four cells in the notebook: header markdown, Plotly display, verdict dict, render.
+
+1. **Run the Plotly cell.** Hover over the spectrogram or waveform — the tooltip shows time in seconds within the panel. Drag-rectangle to zoom in for sub-second precision.
+2. **Identify the visual true onset** (first time-domain amplitude rise above background).
+3. **Edit the verdict cell:**
+
+   ```python
+   verdict_N = {
+       'event_id': '...',
+       'idx': N,
+       'label': 'TP',           # TP / TP-peak / TP-coda / FP
+       'visual_onset_s': 2.55,  # in seconds within the panel; None for FP
+       'notes': 'broadband T-phase onset clearly at 2.55s; AIC pick at 2.62s; '
+                'narrowband 8-10 Hz precursor visible from ~2.0s in spectrogram',
+   }
+   ```
+
+4. **Run the render cell.** It writes:
+   - `outputs/figures/exploratory/validation/annotated_maleen/event_NN_annotated.png` — your annotated panel (your magenta onset line + label + notes side panel)
+   - `outputs/figures/exploratory/validation/annotated_maleen/event_NN_verdict.json` — your verdict, with `pick_shift_s = visual_onset_s − aic_pick_s` computed automatically
+
+5. Move to the next event. Verdicts are persisted per-event, so you can stop and resume freely.
+
+After all 50: run the **aggregator cell** at the bottom of the notebook. It writes a single CSV at `outputs/figures/exploratory/validation/fp_validation_labels_maleen.csv`.
+
+---
+
+## Adaptive panel windows
+
+Five events (#29, 37, 39, 41, 42) use slightly extended panels (10–14 s) because the AIC pick or the event end falls outside the default 10 s window. The panel time axis still starts at zero and ticks in seconds — just use whatever range you see. The same adaptive logic runs in the primary reviewer's notebook, so your panels and theirs are geometrically identical.
+
+---
+
+## What to send back
+
+When you are done with all 50:
+
+- `outputs/figures/exploratory/validation/fp_validation_labels_maleen.csv` (the CSV from the aggregator cell)
+- `outputs/figures/exploratory/validation/annotated_maleen/` (the 50 annotated PNGs and JSON sidecars)
+
+Either commit them to your branch of this repo and we will pull, or zip the `annotated_maleen/` folder plus the CSV and email it back.
+
+---
+
+## Questions
+
+If anything in the schema is ambiguous on a given event, prefer to **label and add a comment in `notes`** rather than skip — disagreements that surface in the κ analysis are exactly the data we need. Reach out via email if you hit a structural problem (cell errors, kernel issues, data-access errors); send a screenshot of the failing cell and the event index.

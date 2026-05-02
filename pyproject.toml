@@ -1,0 +1,17 @@
+[project]
+name = "bravoseis-validation-pack"
+version = "0.1.0"
+description = "Independent inter-rater pack for BRAVOSEIS detection validation (Phase A)."
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel>=6.29",
+    "matplotlib>=3.8",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "plotly>=5.18",
+    "pyyaml>=6.0",
+    "scipy>=1.12",
+]
+
+[tool.uv]
+package = false

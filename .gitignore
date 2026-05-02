@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# uv
+.venv/
+uv.lock
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Reviewer outputs (committed by reviewer once labeling is complete)
+outputs/figures/exploratory/validation/annotated_maleen/event_*.png
+outputs/figures/exploratory/validation/annotated_maleen/event_*.json
+outputs/figures/exploratory/validation/fp_validation_labels_maleen.csv
+
+# OS / editor cruft
+.DS_Store
+*.swp
