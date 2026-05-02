@@ -41,7 +41,9 @@ Spectrogram-domain energy is sometimes visible earlier than the time-domain SNR 
 
 ---
 
-## 4-class schema
+## Schema
+
+The Phase A notebook uses a **4-class schema**:
 
 | Label | Meaning |
 |---|---|
@@ -50,7 +52,9 @@ Spectrogram-domain energy is sometimes visible earlier than the time-domain SNR 
 | **TP-coda** | Real event, AIC pick lands in the coda or on a multipath arrival (late) |
 | **FP** | Spurious trigger, no real signal |
 
-For FP events, set `visual_onset_s = None`.
+The Phase 3 catalogue notebook adds a **5th class — TP-misclass** — for events where the picker did its job but the catalogue's class label is wrong (e.g., a humpback whale ending up in the cryogenic / icequake catalogue, or fin-whale leakage into the seismic catalogue). Use the `notes` field to record the suspected true class. *Added 2026-05-02 after the first event of the Phase 3 user pass surfaced a humpback in the highband_3 cluster.*
+
+For FP and TP-misclass-without-clear-onset events, set `visual_onset_s = None`.
 
 ---
 
